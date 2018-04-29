@@ -19,7 +19,7 @@ INITXMLFILE := $(DATADIR)/$(FILEBODY)-rpc.xml
 
 PBDIR := ./proto
 PBFILE := $(PBDIR)/$(FILEBODY).proto
-PBFILEBASE := $(PBFILE).orig
+PBFILEBASE := $(PBDIR)/$(FILEBODY).orig.proto
 PBTARGET := $(PBDIR)/$(FILEBODY).pb.go
 
 CLIENTTGT := tmclient
