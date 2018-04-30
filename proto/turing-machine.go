@@ -36,21 +36,21 @@ func (tm *TuringMachine) ToString(step uint32) string {
 }
 
 // ChangeState sets TuringMachine states
-func (tm *TuringMachine) ChangeState(action *TuringMachine_TransitionFunction_Delta_Output) {
+func (tm *TuringMachine) ChangeState(output *TuringMachine_TransitionFunction_Delta_Output) {
 	// change to next state
 	// Notice: protobuf-defined GetStaet() returns 0 when "state element is empty",
 	//   same as initial state 0. But, it is different of "State 0" (existing state 0).
 	//   This turing-machine assumes that its state starts 0 and DOES NOT back to 0 again.
-	if action.GetState() > 0 {
-		tm.State = action.GetState()
+	if output.GetState() > 0 {
+		tm.State = output.GetState()
 	}
 	// write symbol to tape under head-position
-	if action.GetSymbol() != "" {
+	if output.GetSymbol() != "" {
 		cellList := tm.GetTape().GetCell()
-		cellList[tm.GetHeadPosition()].Symbol = action.GetSymbol()
+		cellList[tm.GetHeadPosition()].Symbol = output.GetSymbol()
 	}
 	// move to next head position
-	switch action.GetHeadMove() {
+	switch output.GetHeadMove() {
 	case "left":
 		tm.HeadPosition--
 	default:
