@@ -8,7 +8,7 @@ import (
 )
 
 // ToString convert Output to string
-func (output *TuringMachine_TransitionFunction_Delta_Output) ToString() string {
+func (output *TuringMachine_TransitionFunction_Delta_Output) ToString(currentState uint32) string {
 	var moveString string
 	switch output.GetHeadMove() {
 	case "left":
@@ -18,7 +18,12 @@ func (output *TuringMachine_TransitionFunction_Delta_Output) ToString() string {
 	default:
 		moveString = " -:" // default (if empty)
 	}
-	return fmt.Sprintf("[S%d] %5s %4s", output.GetState(), output.GetSymbol(), moveString)
+
+	stateString := fmt.Sprintf("[S%d]", output.GetState())
+	if currentState > 0 && output.GetState() == 0 {
+		stateString = "----" // keep current status (no need to change)
+	}
+	return fmt.Sprintf("%s %5s %4s", stateString, output.GetSymbol(), moveString)
 }
 
 // ToString convert TuringMachine to string

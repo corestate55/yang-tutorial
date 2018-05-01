@@ -44,7 +44,7 @@ func (svr *TMServer) RunTM() (lastState uint32, err bool) {
 		}
 
 		// print step
-		fmt.Println(tm.ToString(step), delta.GetOutput().ToString(), delta.GetLabel())
+		fmt.Println(tm.ToString(step), delta.GetOutput().ToString(tm.State), delta.GetLabel())
 		// Go to Next: change state and head-position
 		tm.ChangeState(delta.GetOutput())
 		step++

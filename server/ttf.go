@@ -35,7 +35,7 @@ func (ttf TTF) Print() {
 		for inputSymbol, delta := range deltaMap {
 			fmt.Printf("   S%d %6s |  %s %s\n",
 				inputState, inputSymbol,
-				delta.GetOutput().ToString(), delta.GetLabel())
+				delta.GetOutput().ToString(inputState), delta.GetLabel())
 		}
 	}
 }
